@@ -1,0 +1,25 @@
+{
+  "name": "gulp-byo-jslint",
+  "version": "1.0.0",
+  "description": "A bring-your-own JSLint plugin for Gulp.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benquarmby/gulp-byo-jslint.git"
+  },
+  "keywords": [
+    "gulp",
+    "jslint"
+  ],
+  "author": "Ben Quarmby",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/benquarmby/gulp-byo-jslint/issues"
+  },
+  "homepage": "https://github.com/benquarmby/gulp-byo-jslint#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "event-stream": "^3.3.2",
+    "gulp-util": "^3.0.7"
+  }
+}

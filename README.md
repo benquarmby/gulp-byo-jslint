@@ -45,16 +45,16 @@ npm install gulp-byo-jslint --save-dev
 
 var gulp = require('gulp');
 var jslint = require('gulp-byo-jslint');
+var paths = [
+    './**/*.js', // Include all JavaScript files
+    './**/*.json', // Include all JSON files
+    '!./node_modules/**', // Exclude NPM
+    '!./bower_components/**', // Exclude Bower
+    '!./submodules/**' // Exclude Git submodules
+];
 
 gulp.task('lint', function () {
-    return gulp
-        .src([
-            './**/*.js', // All JavaScript files
-            './**/*.json', // All JSON files
-            '!./node_modules/**', // Ignore NPM
-            '!./bower_components/**', // Ignore Bower
-            '!./submodules/**' // Ignore Git submodules
-        ])
+    return gulp.src(paths)
         .pipe(jslint({
             jslint: './submodules/JSLint/jslint.js',
             options: {

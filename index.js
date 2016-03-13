@@ -39,6 +39,14 @@ function logWarning(warning) {
     gulpUtil.log(colors.red(message.join('')));
 }
 
+/**
+ * Runs JSLint over each item in the stream.
+ * @param {Object} spec The specification.
+ * @param {String} spec.jslint The file path to jslint.js.
+ * @param {Object} [spec.options] The options to pass to JSLint.
+ * @param {Array} [spec.globals] The list of known global variables to pass to JSLint.
+ * @param {Boolean} [spec.noFail] True to log all warnings without failing.
+ */
 function lintStream(spec) {
     if (!spec || !spec.jslint) {
         throw new gulpUtil.PluginError(pluginName, 'The file path to jslint is required.');
@@ -82,7 +90,7 @@ function lintStream(spec) {
     }
 
     function onEnd() {
-        if (errors) {
+        if (errors && !spec.noFail) {
             var message = errors === 1
                 ? 'JSLint found one error.'
                 : 'JSLint found ' + errors + ' errors.';

@@ -53,15 +53,35 @@ var paths = [
     '!./submodules/**' // Exclude Git submodules
 ];
 
-gulp.task('lint', function () {
+function runJSLint(noFail) {
     return gulp.src(paths)
         .pipe(jslint({
+            // The file path to jslint.js.
             jslint: './submodules/JSLint/jslint.js',
+
+            // The options to pass to JSLint.
             options: {
                 browser: true
             },
-            globals: ['define', 'require']
+
+            // The list of known global variables to pass to JSLint.
+            globals: ['define', 'require'],
+
+            // True to log all warnings without failing.
+            noFail: noFail
         }));
+}
+
+gulp.task('lint', function () {
+    return runJSLint();
+});
+
+gulp.task('lint-watch', function () {
+    return runJSLint(true);
+});
+
+gulp.task('watch', function () {
+    gulp.watch(paths, ['lint-watch']);
 });
 ```
 
